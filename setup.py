@@ -12,6 +12,8 @@ setuptools.setup(name='djsetup',
                  py_modules=['djsetup'],
                  install_requires=[
                      'virtualenv',
+                     'django',
+                     'django_extensions'
                  ],
                  license='MIT License',
                  zip_safe=False,

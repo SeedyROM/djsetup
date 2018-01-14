@@ -13,12 +13,13 @@ import os
 from docopt import docopt
 
 def eval_setup_script(project_name, destination):
+    base_directory = os.path.dirname(__file__)
     try:
-        script = os.path.join(os.path.dirname(__file__), 'setup.sh')
+        script = os.path.join(base_directory, 'setup.sh')
         subprocess.run(['sh', script, project_name, destination])
     except BaseException as e:
-        print(e)
-        print('Something fucked up.')
+        print('Something broke:\n {}'.format(e))
+        subprocess.run(['rm', '-rf', os.path.join(os.getcwd(), destination)])
         sys.exit(-1)
 
 def create_project(*args):
